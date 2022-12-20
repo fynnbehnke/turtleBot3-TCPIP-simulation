@@ -37,3 +37,14 @@
     ```BASH
     roslaunch apr_sim start_sim.launch
     ```
+    
+- Once the nodes are running you can monitor the sensor data using telnet:
+     ```BASH
+     telnet <ip_address> 9997 # For the LiDAR Data
+     telnet <ip_address> 9998 # for the Odometry Data
+     ```
+     or using your listener nodes on the ports:
+     - 9997 (LiDAR Data)
+     - 9998 (Odometry Data)
+
+- To control the turtlebot send the starting command to the port 9999 either via telnet or your commander
