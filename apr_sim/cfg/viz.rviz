@@ -4,11 +4,9 @@ Panels:
     Name: Displays
     Property Tree Widget:
       Expanded:
-        - /Global Options1
-        - /Status1
-        - /Grid1
-        - /Odometry1
         - /Odometry1/Shape1
+        - /MarkerArray1
+        - /MarkerArray1/Status1
       Splitter Ratio: 0.5
     Tree Height: 549
   - Class: rviz/Selection
@@ -187,7 +185,7 @@ Visualization Manager:
       Name: MarkerArray
       Namespaces:
         "": true
-      Queue Size: 100
+      Queue Size: 6
       Value: true
   Enabled: true
   Global Options:

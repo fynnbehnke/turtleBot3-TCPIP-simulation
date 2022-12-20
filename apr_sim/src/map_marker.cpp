@@ -72,6 +72,10 @@ int main(int argc, char** argv){
     border_point.z = 0;   
     border.points.push_back(border_point);
     
+    border.pose.orientation.w = 1;
+    border.pose.orientation.x = 0;
+    border.pose.orientation.y = 0;
+    border.pose.orientation.z = 0;
     border.scale.x = 0.015;
     border.color.r = 0.0;
     border.color.g = 0.0;
@@ -119,6 +123,10 @@ int main(int argc, char** argv){
     line_point.z = 0;   
     line.points.push_back(line_point);
 
+    line.pose.orientation.w = 1;
+    line.pose.orientation.x = 0;
+    line.pose.orientation.y = 0;
+    line.pose.orientation.z = 0;
     line.scale.x = 0.015;
     line.color.r = 1.0;
     line.color.g = 0.0;
@@ -141,6 +149,10 @@ int main(int argc, char** argv){
         circle.points.push_back(circle_point);
     }
 
+    circle.pose.orientation.w = 1;
+    circle.pose.orientation.x = 0;
+    circle.pose.orientation.y = 0;
+    circle.pose.orientation.z = 0;
     circle.scale.x = 0.015;
     circle.color.r = 1.0;
     circle.color.g = 0.0;
@@ -181,6 +193,10 @@ int main(int argc, char** argv){
     square_point.z = 0;   
     square.points.push_back(square_point);
     
+    square.pose.orientation.w = 1;
+    square.pose.orientation.x = 0;
+    square.pose.orientation.y = 0;
+    square.pose.orientation.z = 0;
     square.scale.x = 0.015;
     square.color.r = 1.0;
     square.color.g = 0.0;
@@ -216,6 +232,10 @@ int main(int argc, char** argv){
     triangle_point.z = 0;   
     triangle.points.push_back(triangle_point);
     
+    triangle.pose.orientation.w = 1;
+    triangle.pose.orientation.x = 0;
+    triangle.pose.orientation.y = 0;
+    triangle.pose.orientation.z = 0;
     triangle.scale.x = 0.015;
     triangle.color.r = 1.0;
     triangle.color.g = 0.0;

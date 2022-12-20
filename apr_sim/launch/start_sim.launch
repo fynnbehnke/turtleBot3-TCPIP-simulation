@@ -4,6 +4,6 @@
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find apr_sim)/cfg/viz.rviz" />
 
     <node pkg="tf" type="static_transform_publisher" name="map_broadcaster" args="0 0 0 0 0 0 1 odom map 100" />
-    
+
     <node name="marker_pub_node" pkg="apr_sim" type="marker_pub_node" />
 </launch>
