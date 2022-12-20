@@ -13,6 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   tf
   visualization_msgs
+  sensor_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -139,6 +140,12 @@ include_directories(
 
 add_executable(marker_pub_node src/map_marker.cpp)
 target_link_libraries(marker_pub_node ${catkin_LIBRARIES})
+
+add_executable(Lidar_Server_node src/lidar_server.cpp)
+target_link_libraries(Lidar_Server_node ${catkin_LIBRARIES})
+
+add_executable(Odometry_Server_node src/odometry_server.cpp)
+target_link_libraries(Odometry_Server_node ${catkin_LIBRARIES})
 
 
 ## Rename C++ executable without prefix

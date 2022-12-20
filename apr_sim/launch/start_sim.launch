@@ -6,4 +6,6 @@
     <node pkg="tf" type="static_transform_publisher" name="map_broadcaster" args="0 0 0 0 0 0 1 odom map 100" />
 
     <node name="marker_pub_node" pkg="apr_sim" type="marker_pub_node" />
+    <node name="Lidar_Server_node" pkg="apr_sim" type="Lidar_Server_node" output="screen" />
+    <node name="Odometry_Server_node" pkg="apr_sim" type="Odometry_Server_node" output="screen" />
 </launch>
