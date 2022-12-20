@@ -1,0 +1,16 @@
+# Ignore all
+*
+
+# Unignore all with extensions
+!*.*
+
+# Unignore all dirs
+!*/
+
+# Unignore Makefiles
+!*Makefile
+
+# Ignore files with specific extension
+*.o
+*.out
+*.pdf:Zone.Identifier
