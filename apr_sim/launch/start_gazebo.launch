@@ -1,0 +1,13 @@
+<?xml version ="1.0"?>
+<launch>
+
+    <include file="$(find gazebo_ros)launch/empty_world.launch">
+      <arg name="world_name" value="$(find apr_sim)/maps/myworld.xml" />
+      <arg name="gui" value="false" />
+      <arg name="use_sim_time" value="true" />  <!-- um timing probleme zu vermeiden -->
+      <arg name="paused" value="false" />
+    </include>
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_burger_for_autorace.urdf.xacro" /> 
+    <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" args="-urdf -model turtlebot3_burger -x 0.081 -y -0.436 -z 0 -Y 0 -param robot_description" />
+    <include file="$(find turtlebot3_bringup)/launch/turtlebot3_remote.launch"/>
+</launch>
