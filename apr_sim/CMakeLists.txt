@@ -137,23 +137,8 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/behnke_mor2_node.cpp)
 
-add_executable(cylinder_pub_node src/cylinder_pub.cpp)
-target_link_libraries(cylinder_pub_node ${catkin_LIBRARIES})
-
-add_executable(line_pub_node src/line_pub.cpp)
-target_link_libraries(line_pub_node ${catkin_LIBRARIES})
-
-add_executable(circle_pub_node src/circle_pub.cpp)
-target_link_libraries(circle_pub_node ${catkin_LIBRARIES})
-
-add_executable(square_pub_node src/square_pub.cpp)
-target_link_libraries(square_pub_node ${catkin_LIBRARIES})
-
-add_executable(triangle_pub_node src/triangle_pub.cpp)
-target_link_libraries(triangle_pub_node ${catkin_LIBRARIES})
-
-add_executable(border_pub_node src/border_pub.cpp)
-target_link_libraries(border_pub_node ${catkin_LIBRARIES})
+add_executable(marker_pub_node src/map_marker.cpp)
+target_link_libraries(marker_pub_node ${catkin_LIBRARIES})
 
 
 ## Rename C++ executable without prefix

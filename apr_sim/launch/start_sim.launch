@@ -4,11 +4,6 @@
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find apr_sim)/cfg/viz.rviz" />
 
     <node pkg="tf" type="static_transform_publisher" name="map_broadcaster" args="0 0 0 0 0 0 1 odom map 100" />
-
-    <node name="cylinder_pub_node" pkg="apr_sim" type="cylinder_pub_node" />
-    <node name="line_pub_node" pkg="apr_sim" type="line_pub_node" />
-    <node name="circle_pub_node" pkg="apr_sim" type="circle_pub_node" />
-    <node name="square_pub_node" pkg="apr_sim" type="square_pub_node" />
-    <node name="triangle_pub_node" pkg="apr_sim" type="triangle_pub_node" />
-    <node name="border_pub_node" pkg="apr_sim" type="border_pub_node" />
+    
+    <node name="marker_pub_node" pkg="apr_sim" type="marker_pub_node" />
 </launch>

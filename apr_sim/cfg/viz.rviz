@@ -9,8 +9,6 @@ Panels:
         - /Grid1
         - /Odometry1
         - /Odometry1/Shape1
-        - /Marker2
-        - /Marker3
       Splitter Ratio: 0.5
     Tree Height: 549
   - Class: rviz/Selection
@@ -183,50 +181,10 @@ Visualization Manager:
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
-    - Class: rviz/Marker
+    - Class: rviz/MarkerArray
       Enabled: true
-      Marker Topic: /apr/map/cylinder
-      Name: Marker
-      Namespaces:
-        "": true
-      Queue Size: 100
-      Value: true
-    - Class: rviz/Marker
-      Enabled: true
-      Marker Topic: /apr/map/line
-      Name: Marker
-      Namespaces:
-        "": true
-      Queue Size: 100
-      Value: true
-    - Class: rviz/Marker
-      Enabled: true
-      Marker Topic: /apr/map/circle
-      Name: Marker
-      Namespaces:
-        "": true
-      Queue Size: 100
-      Value: true
-    - Class: rviz/Marker
-      Enabled: true
-      Marker Topic: /apr/map/square
-      Name: Marker
-      Namespaces:
-        "": true
-      Queue Size: 100
-      Value: true
-    - Class: rviz/Marker
-      Enabled: true
-      Marker Topic: /apr/map/triangle
-      Name: Marker
-      Namespaces:
-        "": true
-      Queue Size: 100
-      Value: true
-    - Class: rviz/Marker
-      Enabled: true
-      Marker Topic: /apr/map/border
-      Name: Marker
+      Marker Topic: /apr/map/marker
+      Name: MarkerArray
       Namespaces:
         "": true
       Queue Size: 100
