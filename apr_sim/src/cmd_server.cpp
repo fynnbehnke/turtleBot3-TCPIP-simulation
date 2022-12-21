@@ -2,8 +2,6 @@
 #include <nav_msgs/Odometry.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
-#include <string.h>
-#include <unistd.h>
 #include <iostream>
 
 #define MAXPENDING 5
@@ -21,25 +19,25 @@ class CmdPub{
             cmd_pub = nh.advertise<geometry_msgs::Twist>("/cmd_vel",1);
 
             if ((serverSocket = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0)
-                std::cout << "socket() failed" << std::endl;
+                std::cout << "Commander: socket() failed" << std::endl;
             
             memset(&echoServAddr, 0, sizeof(echoServAddr));
             echoServAddr.sin_family = AF_INET;
             echoServAddr.sin_addr.s_addr = htonl(INADDR_ANY);
             echoServAddr.sin_port = htons(echoServPort);
 
-            if (bind(serverSocket, (struct sockaddr *) &echoServAddr, sizeof(echoServAddr)) < 0)
-                std::cout << "bind() failed" << std::endl;
+            if (bind(serverSocket, (sockaddr*) &echoServAddr, sizeof(echoServAddr)) < 0)
+                std::cout << "Commander: bind() failed" << std::endl;
 
             if (listen(serverSocket, MAXPENDING) < 0)
-                std::cout << "listen() failed" << std::endl;
+                std::cout << "Commander: listen() failed" << std::endl;
 
             clntLen = sizeof(echoClntAddr);
 
             if ((clientSocket = accept(serverSocket, (sockaddr*) &echoClntAddr, &clntLen)) < 0)
-                std::cout << "accept() failed" << std::endl;
+                std::cout << "Commander: accept() failed" << std::endl;
 
-            std::cout << "Handling client " << inet_ntoa(echoClntAddr.sin_addr) << std::endl;
+            std::cout << "Commander: Handling client " << inet_ntoa(echoClntAddr.sin_addr) << std::endl;
 
             HandleTCPClient();
         }
@@ -88,8 +86,8 @@ class CmdPub{
         // TCP_Stuff
         int serverSocket;
         int clientSocket;
-        struct sockaddr_in echoServAddr;
-        struct sockaddr_in echoClntAddr;
+        sockaddr_in echoServAddr;
+        sockaddr_in echoClntAddr;
         unsigned short echoServPort = 9999;
         unsigned int clntLen;
 

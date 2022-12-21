@@ -2,8 +2,6 @@
 #include <nav_msgs/Odometry.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
-#include <string.h>
-#include <unistd.h>
 #include <iostream>
 
 #define MAXPENDING 5
@@ -14,34 +12,34 @@ void DieWithError(std::string errorMessage)
     exit(1);
 }
 
-class OdometryPub{
+class OdometrySub{
     public:
-        OdometryPub(){
-            odom_sub = nh.subscribe("/odom", 1, &OdometryPub::odom_cb, this);
+        OdometrySub(){
+            odom_sub = nh.subscribe("/odom", 1, &OdometrySub::odom_cb, this);
 
             if ((serverSocket = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0)
-                std::cout << "socket() failed" << std::endl;
+                std::cout << "Odometry: socket() failed" << std::endl;
             
             memset(&echoServAddr, 0, sizeof(echoServAddr));
             echoServAddr.sin_family = AF_INET;
             echoServAddr.sin_addr.s_addr = htonl(INADDR_ANY);
             echoServAddr.sin_port = htons(echoServPort);
 
-            if (bind(serverSocket, (struct sockaddr *) &echoServAddr, sizeof(echoServAddr)) < 0)
-                std::cout << "bind() failed" << std::endl;
+            if (bind(serverSocket, (sockaddr*) &echoServAddr, sizeof(echoServAddr)) < 0)
+                std::cout << "Odometry: bind() failed" << std::endl;
 
             if (listen(serverSocket, MAXPENDING) < 0)
-                std::cout << "listen() failed" << std::endl;
+                std::cout << "Odometry: listen() failed" << std::endl;
 
             clntLen = sizeof(echoClntAddr);
 
             if ((clientSocket = accept(serverSocket, (sockaddr*) &echoClntAddr, &clntLen)) < 0)
-                std::cout << "accept() failed" << std::endl;
+                std::cout << "Odometry: accept() failed" << std::endl;
 
-            std::cout << "Handling client " << inet_ntoa(echoClntAddr.sin_addr) << std::endl;
+            std::cout << "Odometry: Handling client " << inet_ntoa(echoClntAddr.sin_addr) << std::endl;
         }
 
-        ~OdometryPub(){
+        ~OdometrySub(){
             close(clientSocket);
         }
 
@@ -76,7 +74,7 @@ class OdometryPub{
             message_length = strlen(message);
 
             if (send(clientSocket, message, message_length, 0) != message_length)
-                DieWithError("send() failed");
+                DieWithError("Odometry: send() failed");
 
         }
 
@@ -88,11 +86,12 @@ class OdometryPub{
         // TCP_Stuff
         int serverSocket;
         int clientSocket;
-        struct sockaddr_in echoServAddr;
-        struct sockaddr_in echoClntAddr;
+        sockaddr_in echoServAddr;
+        sockaddr_in echoClntAddr;
         unsigned short echoServPort = 9998;
         unsigned int clntLen;
 
+        // Message decoding/encoding
         std::string message_string;
         char const* message;
         int message_length;
@@ -101,7 +100,7 @@ class OdometryPub{
 int main(int argc, char *argv[])
 {
     ros::init(argc, argv, "Odometry_Server_Node");
-    OdometryPub OdometryObject;
+    OdometrySub OdometryObject;
 
     ros::spin();
 

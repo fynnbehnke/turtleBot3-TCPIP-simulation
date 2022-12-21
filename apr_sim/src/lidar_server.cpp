@@ -2,8 +2,6 @@
 #include <sensor_msgs/LaserScan.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
-#include <string.h>
-#include <unistd.h>
 #include <iostream>
 
 #define MAXPENDING 5
@@ -14,34 +12,34 @@ void DieWithError(std::string errorMessage)
     exit(1);
 }
 
-class LidarPub{
+class LidarSub{
     public:
-        LidarPub(){
-            lidar_sub = nh.subscribe("/scan", 1, &LidarPub::scan_cb, this);
+        LidarSub(){
+            lidar_sub = nh.subscribe("/scan", 1, &LidarSub::scan_cb, this);
 
             if ((serverSocket = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0)
-                std::cout << "socket() failed" << std::endl;
+                std::cout << "LiDAR: socket() failed" << std::endl;
             
             memset(&echoServAddr, 0, sizeof(echoServAddr));
             echoServAddr.sin_family = AF_INET;
             echoServAddr.sin_addr.s_addr = htonl(INADDR_ANY);
             echoServAddr.sin_port = htons(echoServPort);
 
-            if (bind(serverSocket, (struct sockaddr *) &echoServAddr, sizeof(echoServAddr)) < 0)
-                std::cout << "bind() failed" << std::endl;
+            if (bind(serverSocket, (sockaddr*) &echoServAddr, sizeof(echoServAddr)) < 0)
+                std::cout << "LiDAR: bind() failed" << std::endl;
 
             if (listen(serverSocket, MAXPENDING) < 0)
-                std::cout << "listen() failed" << std::endl;
+                std::cout << "LiDAR: listen() failed" << std::endl;
 
             clntLen = sizeof(echoClntAddr);
 
             if ((clientSocket = accept(serverSocket, (sockaddr*) &echoClntAddr, &clntLen)) < 0)
-                std::cout << "accept() failed" << std::endl;
+                std::cout << "LiDAR: accept() failed" << std::endl;
 
-            std::cout << "Handling client " << inet_ntoa(echoClntAddr.sin_addr) << std::endl;
+            std::cout << "LiDAR: Handling client " << inet_ntoa(echoClntAddr.sin_addr) << std::endl;
         }
 
-        ~LidarPub(){
+        ~LidarSub(){
             close(clientSocket);
         }
 
@@ -73,7 +71,7 @@ class LidarPub{
             message_length = strlen(message);
 
             if (send(clientSocket, message, message_length, 0) != message_length)
-                DieWithError("send() failed");
+                DieWithError("LiDAR: send() failed");
 
         }
 
@@ -85,8 +83,8 @@ class LidarPub{
         // TCP_Stuff
         int serverSocket;
         int clientSocket;
-        struct sockaddr_in echoServAddr;
-        struct sockaddr_in echoClntAddr;
+        sockaddr_in echoServAddr;
+        sockaddr_in echoClntAddr;
         unsigned short echoServPort = 9997;
         unsigned int clntLen;
 
@@ -98,7 +96,7 @@ class LidarPub{
 int main(int argc, char *argv[])
 {
     ros::init(argc, argv, "Lidar_Server_Node");
-    LidarPub LidarObject;
+    LidarSub LidarObject;
 
     ros::spin();
 
