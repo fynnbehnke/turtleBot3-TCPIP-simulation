@@ -30,6 +30,11 @@
     source ~/apr_ws/devel/setup.bash
     ```
 
+- Before each start set the Turtlebot Variable to Model-Burger or write it in the ~/.bashrc
+     ```BASH
+     export TURTLEBOT3_MODEL=burger
+     ```
+
 
 ## Usage
 
