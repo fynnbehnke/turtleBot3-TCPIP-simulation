@@ -10,7 +10,7 @@
 #define CYLINDER_X 0.58
 #define CYLINDER_Y -0.195
 #define CYLINDER_HEIGHT 1.0
-#define CYLINDER_RADIUS 0.034
+#define CYLINDER_RADIUS 0.0315
 
 #define LINE_X 0.081
 #define LINE_Y -0.436

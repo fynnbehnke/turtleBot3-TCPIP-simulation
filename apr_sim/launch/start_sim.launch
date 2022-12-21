@@ -8,4 +8,5 @@
     <node name="marker_pub_node" pkg="apr_sim" type="marker_pub_node" />
     <node name="Lidar_Server_node" pkg="apr_sim" type="Lidar_Server_node" output="screen" />
     <node name="Odometry_Server_node" pkg="apr_sim" type="Odometry_Server_node" output="screen" />
+    <node name="Cmd_Server_node" pkg="apr_sim" type="Cmd_Server_node" output="screen" />
 </launch>

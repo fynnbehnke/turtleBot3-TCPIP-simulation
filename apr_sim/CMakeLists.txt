@@ -147,6 +147,9 @@ target_link_libraries(Lidar_Server_node ${catkin_LIBRARIES})
 add_executable(Odometry_Server_node src/odometry_server.cpp)
 target_link_libraries(Odometry_Server_node ${catkin_LIBRARIES})
 
+add_executable(Cmd_Server_node src/cmd_server.cpp)
+target_link_libraries(Cmd_Server_node ${catkin_LIBRARIES})
+
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
