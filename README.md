@@ -1,4 +1,4 @@
-### Advanced Programming for Robots - TurtleBot Simulation
+# Advanced Programming for Robots - TurtleBot Simulation
 
 ## Installation
 
