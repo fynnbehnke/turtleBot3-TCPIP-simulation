@@ -32,14 +32,16 @@ class CmdPub{
             if (listen(serverSocket, MAXPENDING) < 0)
                 std::cout << "Commander: listen() failed" << std::endl;
 
-            clntLen = sizeof(echoClntAddr);
+            while(1){
+                clntLen = sizeof(echoClntAddr);
 
-            if ((clientSocket = accept(serverSocket, (sockaddr*) &echoClntAddr, &clntLen)) < 0)
-                std::cout << "Commander: accept() failed" << std::endl;
+                if ((clientSocket = accept(serverSocket, (sockaddr*) &echoClntAddr, &clntLen)) < 0)
+                    std::cout << "Commander: accept() failed" << std::endl;
 
-            std::cout << "Commander: Handling client " << inet_ntoa(echoClntAddr.sin_addr) << std::endl;
+                std::cout << "Commander: Handling client " << inet_ntoa(echoClntAddr.sin_addr) << std::endl;
 
-            HandleTCPClient();
+                HandleTCPClient();
+            }
         }
 
         ~CmdPub(){}
@@ -50,14 +52,17 @@ class CmdPub{
         geometry_msgs::Twist message;
         char echoBuffer[RCVBUFSIZE];
         int recvMsgSize;
+        double linear = 0;
+        double angular = 0;
+
 
         if ((recvMsgSize = recv(clientSocket, echoBuffer, RCVBUFSIZE, 0)) < 0)
-            DieWithError("recv() failed");
+            DieWithError("Commander: recv() failed");
 
         std::string message_string(echoBuffer);
         std::stringstream message_stream(message_string);
 
-        message_stream >> delimiter >> message.linear.x >> delimiter >> message.angular.z >> delimiter;
+        message_stream >> delimiter >> message.linear.x >> delimiter >> delimiter >> message.angular.z >> delimiter;
 
         cmd_pub.publish(message);
         
@@ -65,12 +70,14 @@ class CmdPub{
         {
 
             if ((recvMsgSize = recv(clientSocket, echoBuffer, RCVBUFSIZE, 0)) < 0)
-                DieWithError("recv() failed");
+                DieWithError("Commander: recv() failed");
 
             std::string message_string(echoBuffer);
             std::stringstream message_stream(message_string);
 
-            message_stream >> delimiter >> message.linear.x >> delimiter >> message.angular.z >> delimiter;
+            message_stream >> delimiter >> message.linear.x >> delimiter >> delimiter >> message.angular.z >> delimiter;
+
+            std::cout << "Linear Speed: " << message.linear.x << " | Angular speed: " << message.angular.z << std::endl;
 
             cmd_pub.publish(message);
         }
