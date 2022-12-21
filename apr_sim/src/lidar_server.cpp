@@ -3,6 +3,7 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <iostream>
+#include <bits/stdc++.h>
 
 #define MAXPENDING 5
 
@@ -51,10 +52,18 @@ class LidarSub{
             port_msg << "\"angle_min\": " << scan_msg->angle_min << ", \"angle_max\": " << scan_msg->angle_max << ", \"angle_increment\": " << scan_msg->angle_increment << ", \"time_increment\": " << scan_msg->time_increment << ", \"scan_time\": " << scan_msg->scan_time << ", \"range_min\": " << scan_msg->range_min << ", \"range_max\": " << scan_msg->range_max << ", \"ranges\": [";
 
             for(int i = 0; i < scan_msg->ranges.size(); i++){
-                if(i == scan_msg->ranges.size()-1){
-                    port_msg << scan_msg->ranges.at(i) << "], \"intensities\": [";
+                if(isinf(scan_msg->ranges.at(i))){
+                    if(i == scan_msg->ranges.size()-1){
+                        port_msg << 0.0 << "], "intensities": [";
+                    }else{
+                        port_msg << 0.0 << ", ";
+                    }
                 }else{
-                    port_msg << scan_msg->ranges.at(i) << ", ";
+                    if(i == scan_msg->ranges.size()-1){
+                        port_msg << scan_msg->ranges.at(i) << "], "intensities": [";
+                    }else{
+                        port_msg << scan_msg->ranges.at(i) << ", ";
+                    }
                 }
             }
 
