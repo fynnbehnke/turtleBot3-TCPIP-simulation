@@ -47,6 +47,7 @@ class LidarSub{
         void scan_cb(const sensor_msgs::LaserScan::ConstPtr& scan_msg){
             std::stringstream port_msg;
 
+            port_msg.str(std::string());
 
             port_msg << "---START---{\"header\": {\"seq\": " << scan_msg->header.seq << ", \"stamp\": {\"secs\": " << scan_msg->header.stamp.sec << ", \"nsecs\": " << scan_msg->header.stamp.nsec << "}, \"frame_id\": \"" << scan_msg->header.frame_id << "\"}, ";
             port_msg << "\"angle_min\": " << scan_msg->angle_min << ", \"angle_max\": " << scan_msg->angle_max << ", \"angle_increment\": " << scan_msg->angle_increment << ", \"time_increment\": " << scan_msg->time_increment << ", \"scan_time\": " << scan_msg->scan_time << ", \"range_min\": " << scan_msg->range_min << ", \"range_max\": " << scan_msg->range_max << ", \"ranges\": [";
@@ -78,6 +79,10 @@ class LidarSub{
             message_string = port_msg.str();
             message = message_string.c_str();
             message_length = strlen(message);
+
+            if(message_length > 4000){
+                std::cout << "2 messages sent" << std::endl;
+            }
 
             if (send(clientSocket, message, message_length, 0) != message_length)
                 DieWithError("LiDAR: send() failed");
