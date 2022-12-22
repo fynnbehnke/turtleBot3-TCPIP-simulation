@@ -4,28 +4,30 @@
 #include <visualization_msgs/MarkerArray.h>
 #include <math.h>
 
-#define BORDER_X 1.189
-#define BORDER_Y 0.841
+#define BORDER_X -0.58
+#define BORDER_Y 0.195
+#define BORDER_LENGTH 1.189
+#define BORDER_WIDTH 0.841
 
-#define CYLINDER_X 0.58
-#define CYLINDER_Y -0.195
+#define CYLINDER_X 0.0
+#define CYLINDER_Y 0.0
 #define CYLINDER_HEIGHT 1.0
 #define CYLINDER_RADIUS 0.0315
 
-#define LINE_X 0.081
-#define LINE_Y -0.436
+#define LINE_X -0.499
+#define LINE_Y -0.241
 #define LINE_LENGTH 1.043
 
-#define CIRCLE_X 0.237
-#define CIRCLE_Y -0.604
+#define CIRCLE_X -0.343
+#define CIRCLE_Y -0.409
 #define CIRCLE_RADIUS 0.15
 
-#define SQUARE_X 0.474
-#define SQUARE_Y -0.455
+#define SQUARE_X -0.106
+#define SQUARE_Y -0.26
 #define SQUARE_LENGTH 0.3
 
-#define TRIANGLE_X 0.989
-#define TRIANGLE_Y -0.463
+#define TRIANGLE_X 0.409
+#define TRIANGLE_Y -0.268
 #define TRIANGLE_LENGTH_SIDE 0.3
 #define TRIANGLE_LENGTH_BOT 0.286
 
@@ -47,28 +49,28 @@ int main(int argc, char** argv){
     border.id = 5;
     border.type = visualization_msgs::Marker::LINE_STRIP;
     
-    border_point.x = 0;
-    border_point.y = 0;
+    border_point.x = BORDER_X;
+    border_point.y = BORDER_Y;
     border_point.z = 0;   
     border.points.push_back(border_point);
 
-    border_point.x =  0;
-    border_point.y =  -BORDER_Y;
+    border_point.x =  BORDER_X;
+    border_point.y =  BORDER_Y-BORDER_WIDTH;
+    border_point.z = 0;   
+    border.points.push_back(border_point);
+
+    border_point.x = BORDER_X+BORDER_LENGTH;
+    border_point.y = BORDER_Y-BORDER_WIDTH;
+    border_point.z = 0;   
+    border.points.push_back(border_point);
+
+    border_point.x = BORDER_X+BORDER_LENGTH;
+    border_point.y = BORDER_Y;
     border_point.z = 0;   
     border.points.push_back(border_point);
 
     border_point.x = BORDER_X;
-    border_point.y = -BORDER_Y;
-    border_point.z = 0;   
-    border.points.push_back(border_point);
-
-    border_point.x = BORDER_X;
-    border_point.y = 0;
-    border_point.z = 0;   
-    border.points.push_back(border_point);
-
-    border_point.x = 0;
-    border_point.y = 0;
+    border_point.y = BORDER_Y;
     border_point.z = 0;   
     border.points.push_back(border_point);
     
