@@ -54,13 +54,13 @@ class LidarSub{
             for(int i = 0; i < scan_msg->ranges.size(); i++){
                 if(isinf(scan_msg->ranges.at(i))){
                     if(i == scan_msg->ranges.size()-1){
-                        port_msg << 0.0 << "], "intensities": [";
+                        port_msg << 0.0 << "], \"intensities\": [";
                     }else{
                         port_msg << 0.0 << ", ";
                     }
                 }else{
                     if(i == scan_msg->ranges.size()-1){
-                        port_msg << scan_msg->ranges.at(i) << "], "intensities": [";
+                        port_msg << scan_msg->ranges.at(i) << "], \"intensities\": [";
                     }else{
                         port_msg << scan_msg->ranges.at(i) << ", ";
                     }
