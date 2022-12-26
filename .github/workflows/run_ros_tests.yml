@@ -1,0 +1,9 @@
+name: ROS test runner
+on: [push]
+jobs:
+  run_ros_tests:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the docker-compose stack
+        run: cd ros_ws && docker build .
