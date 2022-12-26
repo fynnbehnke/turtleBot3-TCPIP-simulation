@@ -27,9 +27,9 @@
 #define SQUARE_LENGTH 0.3
 
 #define TRIANGLE_X 0.409
-#define TRIANGLE_Y -0.268
+#define TRIANGLE_Y -0.26
 #define TRIANGLE_LENGTH_SIDE 0.3
-#define TRIANGLE_LENGTH_BOT 0.286
+#define TRIANGLE_LENGTH_BOT 0.3
 
 
 int main(int argc, char** argv){
