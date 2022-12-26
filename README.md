@@ -7,8 +7,9 @@
 
 ## General Information
 
-### Coordinate Frames
+The Reference World Frame has its origin in the centor of the cylinder Placed on the map. The relevant Waypoints are visualized in the following graphic
 
+![Coordinate Frames and Waypoints](Coordinate_Frames.png)
 
 ## Installation
 
