@@ -41,9 +41,10 @@ jobs:
             rosdep update
       - name: Create Workspace
         run: |
-            mkdir catkin_ws
+            mkdir -p catkin_ws/src/
             mv `find -maxdepth 1 -not -name . -not -name catkin_ws` catkin_ws/
-            mv catkin_ws/ src/
+            cd ~/catkin_ws
+            mv `find -maxdepth 1 -not -name . -not -name src` src/
             cd src
             bash -c 'source /opt/ros/$ROS_DISTRO/setup.bash; \
             catkin init'
