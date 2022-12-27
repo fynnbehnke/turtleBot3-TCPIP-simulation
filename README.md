@@ -1,5 +1,7 @@
 # Advanced Programming for Robots - TurtleBot Simulation
 
+![Catkin Build](https://github.com/fynnbehnke/mre1-APR-Simulation/workflows/ros_build_test.yml/badge.svg)
+
 ## Context
 1. [General Information](#general-information)
 2. [Installation](#installation)
