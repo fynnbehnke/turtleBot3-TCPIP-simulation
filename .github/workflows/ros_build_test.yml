@@ -39,7 +39,8 @@ jobs:
             source /opt/ros/$ROS_DISTRO/setup.bash
             sudo rosdep init
             rosdep update
-            ln -s $GITHUB_WORKSPACE ~/catkin_ws/src/robot
+            mkdir -p ~/catkin_ws/src
+            mv `find -maxdepth 1 -not -name . -not -name catkin_ws` catkin_ws/src/
             cd ~/catkin_ws
             rosdep install --from-paths src --ignore-src -r -s
             rosdep install --from-paths src --ignore-src -ry
