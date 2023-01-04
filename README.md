@@ -16,9 +16,12 @@ The Reference World Frame has its origin in the centor of the cylinder Placed on
 
 ## Installation
 
-- Install ROS on your Workstation (preferably ROS-Noetic / Ubuntu 20.04).
+- Install ROS and the required packages on your Workstation (preferably ROS-Noetic / Ubuntu 20.04).
 
      Follow this [Tutorial](http://wiki.ros.org/noetic/Installation/Ubuntu) (Install the Desktop-Full-Version for Gazebo).
+     ```BASH
+     sudo apt-get install ros-noetic-turtlebot3
+     ```
 
 -  Create, Build and Source a new ROS Workspace
 
