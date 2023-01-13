@@ -6,6 +6,7 @@
 #include <bits/stdc++.h>
 
 #define MAXPENDING 5
+#define LOSSPERCENT 0
 
 void DieWithError(std::string errorMessage)
 {
@@ -70,7 +71,8 @@ class LidarSub{
 
             for(int i = 0; i < scan_msg->intensities.size(); i++){
                 if(i == scan_msg->intensities.size()-1){
-                    port_msg << scan_msg->intensities.at(i) << "]}___END___";
+                    if((rand() % 100) >= LOSSPERCENT)
+                        port_msg << scan_msg->intensities.at(i) << "]}___END___";
                 }else{
                     port_msg << scan_msg->intensities.at(i) << ", ";
                 }

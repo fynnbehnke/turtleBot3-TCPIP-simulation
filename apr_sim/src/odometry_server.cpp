@@ -5,6 +5,7 @@
 #include <iostream>
 
 #define MAXPENDING 5
+#define LOSSPERCENT 0
 
 void DieWithError(std::string errorMessage)
 {
@@ -62,7 +63,8 @@ class OdometrySub{
 
             for(int i = 0; i < odom_msg->twist.covariance.size(); i++){
                 if(i == odom_msg->twist.covariance.size()-1){
-                    port_msg << odom_msg->twist.covariance.at(i) << "]}}___END___";
+                    if((rand() % 100) >= LOSSPERCENT)
+                        port_msg << odom_msg->twist.covariance.at(i) << "]}}___END___";
                 }else{
                     port_msg << odom_msg->twist.covariance.at(i) << ", ";
                 }
