@@ -48,7 +48,7 @@ class OdometrySub{
             std::stringstream port_msg;
 
 
-            port_msg << "---START---{\"header\": {\"seq\": " << odom_msg->header.seq << ", \"stamp\": {\"secs\": " << odom_msg->header.stamp.sec << ", \"nsecs\": " << odom_msg->header.stamp.nsec << "}, \"frame_id\": \"" << odom_msg->header.frame_id << "\", \"child_frame_id\": \"" << odom_msg->child_frame_id << "\", \"pose\": {\"pose\": {\"position\": ";
+            port_msg << "---START---{\"header\": {\"seq\": " << odom_msg->header.seq << ", \"stamp\": {\"secs\": " << odom_msg->header.stamp.sec << ", \"nsecs\": " << odom_msg->header.stamp.nsec << "}, \"frame_id\": \"" << odom_msg->header.frame_id << "\"}, \"child_frame_id\": \"" << odom_msg->child_frame_id << "\", \"pose\": {\"pose\": ";
             port_msg << "{\"position\": {\"x\": " << odom_msg->pose.pose.position.x << ", \"y\": " << odom_msg->pose.pose.position.y << ", \"z\": " << odom_msg->pose.pose.position.z << "}, \"orientation\": {\"x\": " << odom_msg->pose.pose.orientation.x << ", \"y\": " << odom_msg->pose.pose.orientation.y << ", \"z\": " << odom_msg->pose.pose.orientation.z << ", \"w\": " << odom_msg->pose.pose.orientation.w << "}}, \"covariance\": [";
 
             for(int i = 0; i < odom_msg->pose.covariance.size(); i++){
@@ -59,7 +59,7 @@ class OdometrySub{
                 }
             }
 
-            port_msg << "{\"twist\": {\"twist\": {\"linear\": {\"x\": " << odom_msg->twist.twist.linear.x << ", \"y\": " << odom_msg->twist.twist.linear.y << ", \"z\": " << odom_msg->twist.twist.linear.z << "}, \"angular\": {\"x\": " << odom_msg->twist.twist.angular.x << ", \"y\": " << odom_msg->twist.twist.angular.y << ", \"z\": " << odom_msg->twist.twist.angular.z << "}}, \"covariance\": [";
+            port_msg << "\"twist\": {\"twist\": {\"linear\": {\"x\": " << odom_msg->twist.twist.linear.x << ", \"y\": " << odom_msg->twist.twist.linear.y << ", \"z\": " << odom_msg->twist.twist.linear.z << "}, \"angular\": {\"x\": " << odom_msg->twist.twist.angular.x << ", \"y\": " << odom_msg->twist.twist.angular.y << ", \"z\": " << odom_msg->twist.twist.angular.z << "}}, \"covariance\": [";
 
             for(int i = 0; i < odom_msg->twist.covariance.size(); i++){
                 if(i == odom_msg->twist.covariance.size()-1){
