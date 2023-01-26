@@ -31,13 +31,6 @@ class OdometrySub{
 
             if (listen(serverSocket, MAXPENDING) < 0)
                 std::cout << "Odometry: listen() failed" << std::endl;
-
-            clntLen = sizeof(echoClntAddr);
-
-            if ((clientSocket = accept(serverSocket, (sockaddr*) &echoClntAddr, &clntLen)) < 0)
-                std::cout << "Odometry: accept() failed" << std::endl;
-
-            std::cout << "Odometry: Handling client " << inet_ntoa(echoClntAddr.sin_addr) << std::endl;
         }
 
         ~OdometrySub(){
@@ -45,6 +38,13 @@ class OdometrySub{
         }
 
         void odom_cb(const nav_msgs::Odometry::ConstPtr& odom_msg){
+            clntLen = sizeof(echoClntAddr);
+
+            if ((clientSocket = accept(serverSocket, (sockaddr*) &echoClntAddr, &clntLen)) < 0)
+                std::cout << "Odometry: accept() failed" << std::endl;
+
+            std::cout << "Odometry: Handling client " << inet_ntoa(echoClntAddr.sin_addr) << std::endl;
+
             std::stringstream port_msg;
 
 

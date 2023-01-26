@@ -32,13 +32,6 @@ class LidarSub{
 
             if (listen(serverSocket, MAXPENDING) < 0)
                 std::cout << "LiDAR: listen() failed" << std::endl;
-
-            clntLen = sizeof(echoClntAddr);
-
-            if ((clientSocket = accept(serverSocket, (sockaddr*) &echoClntAddr, &clntLen)) < 0)
-                std::cout << "LiDAR: accept() failed" << std::endl;
-
-            std::cout << "LiDAR: Handling client " << inet_ntoa(echoClntAddr.sin_addr) << std::endl;
         }
 
         ~LidarSub(){
@@ -46,6 +39,13 @@ class LidarSub{
         }
 
         void scan_cb(const sensor_msgs::LaserScan::ConstPtr& scan_msg){
+            clntLen = sizeof(echoClntAddr);
+
+            if ((clientSocket = accept(serverSocket, (sockaddr*) &echoClntAddr, &clntLen)) < 0)
+                std::cout << "LiDAR: accept() failed" << std::endl;
+
+            std::cout << "LiDAR: Handling client " << inet_ntoa(echoClntAddr.sin_addr) << std::endl;
+            
             std::stringstream port_msg;
 
             port_msg.str(std::string());
